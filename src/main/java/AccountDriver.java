@@ -1,8 +1,8 @@
-package src;
 
-import src.objects.Account;
-import src.objects.CheckingAccount;
-import src.objects.SavingsAccount;
+
+import objects.Account;
+import objects.CheckingAccount;
+import objects.SavingsAccount;
 
 import java.util.Scanner;
 
