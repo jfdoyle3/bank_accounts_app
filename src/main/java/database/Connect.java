@@ -1,42 +1,18 @@
 package database;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
-public class Connect {
+import java.sql.*;
 
-    public static void connectSQLite() {
-        Connection conn = null;
-        String dbName="bank";
-        String dbPath="C:/sqlite/"+dbName+".db";
-        try {
-            // db parameters
-            String url = "jdbc:sqlite:"+dbPath;
-            // create a connection to the database
-            conn = DriverManager.getConnection(url);
+    public class Connect {
+        public static void main( String args[] ) {
+            Connection c = null;
 
-            System.out.println("Connection to SQLite has been established.");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                Class.forName("org.sqlite.JDBC");
+                c = DriverManager.getConnection("jdbc:sqlite:bank.db");
+            } catch ( Exception e ) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                System.exit(0);
             }
+            System.out.println("Opened database successfully");
         }
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        connectSQLite();
-
-
-    }
-
-
-}
