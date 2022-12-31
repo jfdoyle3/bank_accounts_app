@@ -1,5 +1,6 @@
 
 
+import database.CreateDatabase;
 import objects.Account;
 import objects.CheckingAccount;
 import objects.SavingsAccount;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 public class AccountDriver {
 
     public static void main(String[] args) {
+        CreateDatabase.createDatabase();
         Scanner keyboard = new Scanner(System.in);
 
         Account accounts[] = new Account[10];
