@@ -3,36 +3,36 @@ import java.sql.*;
 
 public class InsertRecords {
 
-    public static void main( String args[] ) {
-        Connection c = null;
+    public static void insertRecord(String account, int idx, String name, int save, int check) {
+        Connection conn = null;
         Statement stmt = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
+            conn = DriverManager.getConnection("jdbc:sqlite:bank.db");
+            conn.setAutoCommit(false);
             System.out.println("Opened database successfully");
 
-            stmt = c.createStatement();
-            String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (1, 'Paul', 32, 'California', 20000.00 );";
-            stmt.executeUpdate(sql);
+            stmt = conn.createStatement();
+            String insertRecord="INSERT INTO "+account+" (ID,NAME,SAVINGS,CHECKING) " +
+                    "VALUES ("+idx+","+name+","+save+","+check+");";
+//            String sql = "INSERT INTO accounts (ID,NAME,SAVINGS,CHECKING) " +
+//                    "VALUES (1, 'Paul', 100100, 100101 );";
+//            stmt.executeUpdate(sql);
+//
+//            sql = "INSERT INTO savings (ID,ACCOUNT,AMOUNT,BALANCE) " +
+//                    "VALUES (1, 100100, 25, 25);";
+//            stmt.executeUpdate(sql);
+//
+//            sql = "INSERT INTO checking (ID,ACCOUNT,AMOUNT,BALANCE) " +
+//                    "VALUES (1,100101, 25, 25);";
+            stmt.executeUpdate(insertRecord);
 
-            sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (2, 'Allen', 25, 'Texas', 15000.00 );";
-            stmt.executeUpdate(sql);
 
-            sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (3, 'Teddy', 23, 'Norway', 20000.00 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );";
-            stmt.executeUpdate(sql);
 
             stmt.close();
-            c.commit();
-            c.close();
+            conn.commit();
+            conn.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
