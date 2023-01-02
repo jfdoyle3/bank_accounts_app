@@ -1,9 +1,9 @@
 package database;
 import java.sql.*;
 
-public class InsertRecords {
+public class AddRecords {
 
-    public static void insertRecord(String account, int idx, String name, int save, int check) {
+    public static void addAccount(String account, int idx, String name, int save, int check) {
         Connection conn = null;
         Statement stmt = null;
 
@@ -37,6 +37,6 @@ public class InsertRecords {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        System.out.println("Records created successfully");
+        System.out.println("Account created successfully");
     }
 }
