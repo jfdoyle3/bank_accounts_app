@@ -12,11 +12,6 @@ public class AccountDriver {
 
     public static void main(String[] args) {
         CreateDatabase.createDatabase();
-        AddRecords.addAccount("Jim","10010","10011");
-        AddRecords.addAccount("Sam","10012","10013");
-        AddRecords.addAccount("Tim","10014","10015");
-        AddRecords.addAccount("Gym","10016","10017");
-        System.out.println("records added");
         Scanner keyboard = new Scanner(System.in);
 
         Account accounts[] = new Account[10];
