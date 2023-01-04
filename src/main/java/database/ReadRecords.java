@@ -10,6 +10,7 @@ public class ReadRecords {
     public static void main(String args[]) {
         Connection conn = null;
         Statement stmt = null;
+        String name="Jim";
 
         try {
             Class.forName("org.sqlite.JDBC");
@@ -18,8 +19,9 @@ public class ReadRecords {
             //   System.out.println("Opened database successfully");
 
             stmt = conn.createStatement();
-            String selectAllQuery= "SELECT name FROM accounts";
-            ResultSet rs=stmt.executeQuery(selectAllQuery);
+
+            String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
+            ResultSet rs=stmt.executeQuery(findByNameQuery);
             while (rs.next()) {
                 System.out.println(rs.getInt("id") +  "\t" +
                         rs.getString("name") + "\t" +
