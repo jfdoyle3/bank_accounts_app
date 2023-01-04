@@ -21,16 +21,31 @@ public class AccountDriver {
         do {
             choice = menu(keyboard);
             System.out.println();
-            if (choice == 1) {
+            switch (choice){
+           case 1: {
                 accounts[numAccounts++] = createAccount(keyboard);
-            } else if (choice == 2) {
+                break;
+            }
+                case 2: {
                 doDeposit(accounts, numAccounts, keyboard);
-            } else if (choice == 3) {
+                break;
+            }
+                case 3: {
                 doWithdraw(accounts, numAccounts, keyboard);
-            } else if (choice==4) {
+                break;
+            }
+                case 4: {
                 applyInterest(accounts, numAccounts, keyboard);
-            }else {
-                System.out.println("Good-Bye");
+                break;
+            }
+                case 5: {
+                    System.out.println("Good-Bye");
+                    break;
+                }
+                default: {
+                    System.out.println("Invalid Selection");
+                    break;
+                }
             }
             System.out.println();
         } while (choice != 5);

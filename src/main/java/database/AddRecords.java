@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class AddRecords {
 
-    public static void addAccount(String name, String save, String check) {
+    public static void addRecord(String sqlStatement) {
         Connection conn = null;
         Statement stmt = null;
 
@@ -14,9 +14,9 @@ public class AddRecords {
          //   System.out.println("Opened database successfully");
 
             stmt = conn.createStatement();
-            String insertRecord="INSERT INTO accounts (NAME,SAVINGS,CHECKING) " +
-                    "VALUES ('"+name+"','"+save+"','"+check+"');";
-            stmt.executeUpdate(insertRecord);
+          //  String insertRecord="INSERT INTO accounts (NAME,SAVINGS,CHECKING) " +
+          //          "VALUES ('"+name+"','"+save+"','"+check+"');";
+            stmt.executeUpdate(sqlStatement);
 
             stmt.close();
             conn.commit();
