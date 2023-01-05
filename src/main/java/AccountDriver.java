@@ -21,23 +21,23 @@ public class AccountDriver {
         do {
             choice = menu(keyboard);
             System.out.println();
-            switch (choice){
-           case 1: {
-                accounts[numAccounts++] = createAccount(keyboard);
-                break;
-            }
+            switch (choice) {
+                case 1: {
+                    accounts[numAccounts++] = createAccount(keyboard);
+                    break;
+                }
                 case 2: {
-                doDeposit(accounts, numAccounts, keyboard);
-                break;
-            }
+                    doDeposit(accounts, numAccounts, keyboard);
+                    break;
+                }
                 case 3: {
-                doWithdraw(accounts, numAccounts, keyboard);
-                break;
-            }
+                    doWithdraw(accounts, numAccounts, keyboard);
+                    break;
+                }
                 case 4: {
-                applyInterest(accounts, numAccounts, keyboard);
-                break;
-            }
+                    applyInterest(accounts, numAccounts, keyboard);
+                    break;
+                }
                 case 5: {
                     System.out.println("Good-Bye");
                     break;
@@ -117,7 +117,7 @@ public class AccountDriver {
 
     public static Account createAccount(Scanner keyboard) {
         Account account = null;
-        int choice =accountMenu(keyboard);
+        int choice = accountMenu(keyboard);
         int accountNumber;
         System.out.print("Enter Account Number: ");
         accountNumber = keyboard.nextInt();
