@@ -2,6 +2,7 @@
 
 import database.AddRecords;
 import database.CreateDatabase;
+import database.ReadRecords;
 import objects.Account;
 import objects.CheckingAccount;
 import objects.SavingsAccount;
@@ -38,7 +39,12 @@ public class AccountDriver {
                     applyInterest(accounts, numAccounts, keyboard);
                     break;
                 }
-                case 5: {
+
+                case 22: {
+                    searchAccountSQL(keyboard);
+                    break;
+                }
+                case 99: {
                     System.out.println("Good-Bye");
                     break;
                 }
@@ -48,23 +54,8 @@ public class AccountDriver {
                 }
             }
             System.out.println();
-        } while (choice != 5);
+        } while (choice != 99);
 
-    }
-
-    public static int accountMenu(Scanner keyboard) {
-        System.out.println("Select Account type");
-        System.out.println("1. Checking Account");
-        System.out.println("2. Savings Account");
-
-        int choice;
-
-        do {
-            System.out.print("Enter Choice: ");
-            choice = keyboard.nextInt();
-        } while (choice < 1 || choice > 2);
-
-        return choice;
     }
 
     public static int searchAccount(Account accounts[], int count, int accountNumber) {
@@ -73,6 +64,14 @@ public class AccountDriver {
                 return i;
             }
         }
+        return -1;
+    }
+    public static int searchAccountSQL(Scanner keyboard) {
+        System.out.println("Enter account number");
+        int accountNumber = keyboard.nextInt();
+        String accountNumberStr=Integer.toString(accountNumber);
+        String findByNameQuery= "SELECT * FROM accounts WHERE checking='"+accountNumberStr+"'";
+        ReadRecords.readRecords(findByNameQuery);
         return -1;
     }
 
@@ -122,7 +121,7 @@ public class AccountDriver {
         System.out.print("Enter Account Number: ");
         accountNumber = keyboard.nextInt();
         if (choice == 1) {
-            System.out.print("Enter tansaction Fee: ");
+            System.out.print("Enter transaction Fee: ");
             double fee = keyboard.nextDouble();
             account = new CheckingAccount(accountNumber, fee);
         } else {
@@ -134,20 +133,36 @@ public class AccountDriver {
         return account;
     }
 
-    public static int menu(Scanner keyboard) {
-        System.out.println("Bank Account Menu");
-        System.out.println("1. Create New Account");
-        System.out.println("2. Deposit funds");
-        System.out.println("3. Withdraw funds");
-        System.out.println("4. Apply Interest");
-        System.out.println("5. Quit");
+    public static int accountMenu(Scanner keyboard) {
+        System.out.println("Select Account type");
+        System.out.println("1. Checking Account");
+        System.out.println("2. Savings Account");
 
         int choice;
 
         do {
             System.out.print("Enter Choice: ");
             choice = keyboard.nextInt();
-        } while (choice < 1 || choice > 5);
+        } while (choice < 1 || choice > 2);
+
+        return choice;
+    }
+
+    public static int menu(Scanner keyboard) {
+        System.out.println("Bank Account Menu");
+        System.out.println("1. Create New Account");
+        System.out.println("2. Deposit funds");
+        System.out.println("3. Withdraw funds");
+        System.out.println("4. Apply Interest");
+        System.out.println("22: Search Accounts db");
+        System.out.println("99. Quit");
+
+        int choice;
+
+        do {
+            System.out.print("Enter Choice: ");
+            choice = keyboard.nextInt();
+        } while (choice < 1 || choice > 99);
 
         return choice;
     }

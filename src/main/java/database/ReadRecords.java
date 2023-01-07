@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class ReadRecords {
 
-    public static void main(String args[]) {
+    public static void readRecords(String sqlQuery) {
         Connection conn = null;
         Statement stmt = null;
         String name="Jim";
@@ -20,8 +20,8 @@ public class ReadRecords {
 
             stmt = conn.createStatement();
 
-            String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
-            ResultSet rs=stmt.executeQuery(findByNameQuery);
+            //String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
+            ResultSet rs=stmt.executeQuery(sqlQuery);
             while (rs.next()) {
                 System.out.println(rs.getInt("id") +  "\t" +
                         rs.getString("name") + "\t" +
