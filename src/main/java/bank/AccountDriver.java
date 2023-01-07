@@ -1,4 +1,4 @@
-
+package bank;
 
 import database.AddRecords;
 import database.CreateDatabase;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class AccountDriver {
 
-    public static void main(String[] args) {
+    public static void accountDriver() {
         CreateDatabase.createDatabase();
         Scanner keyboard = new Scanner(System.in);
 
