@@ -28,30 +28,30 @@ public class AccountDriver {
 
         // Menu input results loop.
         do {
-            choice = menu(keyboard);
+            choice = Console.menu(keyboard);
             System.out.println();
             switch (choice) {
                 case 1: {
                     accounts[numAccounts++] = createAccount(keyboard);
                     break;
                 }
-                case 2: {
-                    doDeposit(accounts, numAccounts, keyboard);
-                    break;
-                }
-                case 3: {
-                    doWithdraw(accounts, numAccounts, keyboard);
-                    break;
-                }
-                case 4: {
-                    applyInterest(accounts, numAccounts, keyboard);
-                    break;
-                }
-
-                case 22: {
-                    searchAccountSQL(keyboard);
-                    break;
-                }
+//                case 2: {
+//                    doDeposit(accounts, numAccounts, keyboard);
+//                    break;
+//                }
+//                case 3: {
+//                    doWithdraw(accounts, numAccounts, keyboard);
+//                    break;
+//                }
+//                case 4: {
+//                    applyInterest(accounts, numAccounts, keyboard);
+//                    break;
+//                }
+//
+//                case 22: {
+//                    searchAccountSQL(keyboard);
+//                    break;
+//                }
                 case 99: {
                     System.out.println("Good-Bye");
                     break;
