@@ -12,13 +12,21 @@ import java.util.Scanner;
 public class AccountDriver {
 
     public static void accountDriver() {
+
+        // Create Tables
         CreateDatabase.createDatabase();
+
+        // Scanner
         Scanner keyboard = new Scanner(System.in);
 
-        Account accounts[] = new Account[10];
-        int numAccounts = 0;
+        // temp 'database'
+//        Account accounts[] = new Account[10];
+//        int numAccounts = 0;
         int choice = 0;
 
+
+
+        // Menu input results loop.
         do {
             choice = menu(keyboard);
             System.out.println();
@@ -58,6 +66,7 @@ public class AccountDriver {
 
     }
 
+    // Search
     public static int searchAccount(Account accounts[], int count, int accountNumber) {
         for (int i = 0; i < count; i++) {
             if (accounts[i].getAccountNumber() == accountNumber) {
@@ -66,6 +75,7 @@ public class AccountDriver {
         }
         return -1;
     }
+
     public static int searchAccountSQL(Scanner keyboard) {
         System.out.println("Enter account number");
         int accountNumber = keyboard.nextInt();
@@ -75,6 +85,8 @@ public class AccountDriver {
         return -1;
     }
 
+
+    // Bank Functions
     public static void doDeposit(Account accounts[], int count, Scanner keyboard) {
         System.out.print("\nPlease enter account number: ");
         int accountNumber = keyboard.nextInt();
@@ -131,39 +143,5 @@ public class AccountDriver {
         }
 
         return account;
-    }
-
-    public static int accountMenu(Scanner keyboard) {
-        System.out.println("Select Account type");
-        System.out.println("1. Checking Account");
-        System.out.println("2. Savings Account");
-
-        int choice;
-
-        do {
-            System.out.print("Enter Choice: ");
-            choice = keyboard.nextInt();
-        } while (choice < 1 || choice > 2);
-
-        return choice;
-    }
-
-    public static int menu(Scanner keyboard) {
-        System.out.println("Bank Account Menu");
-        System.out.println("1. Create New Account");
-        System.out.println("2. Deposit funds");
-        System.out.println("3. Withdraw funds");
-        System.out.println("4. Apply Interest");
-        System.out.println("22: Search Accounts db");
-        System.out.println("99. Quit");
-
-        int choice;
-
-        do {
-            System.out.print("Enter Choice: ");
-            choice = keyboard.nextInt();
-        } while (choice < 1 || choice > 99);
-
-        return choice;
     }
 }

@@ -1,5 +1,9 @@
+import bank.AccountDriver;
 
+import static bank.AccountDriver.*;
 
-public static void main(String[]args){
-        AccountDriver.accountDriver();
-        }
+public class Main {
+    public static void main(String[] args) {
+        accountDriver();
+    }
+}
