@@ -7,6 +7,7 @@ import objects.Account;
 import objects.CheckingAccount;
 import objects.SavingsAccount;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class AccountDriver {
@@ -20,8 +21,8 @@ public class AccountDriver {
         Scanner keyboard = new Scanner(System.in);
 
         // temp 'database'
-//        Account accounts[] = new Account[10];
-//        int numAccounts = 0;
+        // Account accounts[] = new Account[10];
+        // int numAccounts = 0;
         int choice = 0;
 
 
@@ -32,7 +33,7 @@ public class AccountDriver {
             System.out.println();
             switch (choice) {
                 case 1: {
-                    accounts[numAccounts++] = createAccount(keyboard);
+                    createAccount(keyboard);
                     break;
                 }
 //                case 2: {
@@ -47,11 +48,11 @@ public class AccountDriver {
 //                    applyInterest(accounts, numAccounts, keyboard);
 //                    break;
 //                }
-//
-//                case 22: {
-//                    searchAccountSQL(keyboard);
-//                    break;
-//                }
+
+                case 22: {
+                    searchAccountSQL(keyboard);
+                    break;
+                }
                 case 99: {
                     System.out.println("Good-Bye");
                     break;
@@ -128,10 +129,14 @@ public class AccountDriver {
 
     public static Account createAccount(Scanner keyboard) {
         Account account = null;
-        int choice = accountMenu(keyboard);
+        int choice = Console.accountMenu(keyboard);
         int accountNumber;
-        System.out.print("Enter Account Number: ");
-        accountNumber = keyboard.nextInt();
+        accountNumber=accountGenerator();
+        System.out.println(accountNumber);
+//        System.out.print("Enter Account Number: ");
+//        accountNumber = keyboard.nextInt();
+
+        System.out.println();
         if (choice == 1) {
             System.out.print("Enter transaction Fee: ");
             double fee = keyboard.nextDouble();
@@ -143,5 +148,10 @@ public class AccountDriver {
         }
 
         return account;
+    }
+
+    public static int accountGenerator() {
+        Random r = new Random( System.currentTimeMillis() );
+        return ((1 + r.nextInt(2)) * 100000000 + r.nextInt(100000000));
     }
 }

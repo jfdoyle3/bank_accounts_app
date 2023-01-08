@@ -22,7 +22,7 @@ public class CreateDatabase {
             // Savings
             String savingsTable = "CREATE TABLE IF NOT EXISTS savings(\n"
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
-                    + "account    TEXT     NOT NULL,\n"
+                    + "account    TEXT        UNIQUE        NOT NULL,\n"
                     + "amount     INTEGER,\n"
                     + "balance    INTEGER\n"
                     + ")";
@@ -30,7 +30,7 @@ public class CreateDatabase {
             //Checking
             String checkingTable = "CREATE TABLE IF NOT EXISTS checking (\n"
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
-                    + "account    TEXT     NOT NULL,\n"
+                    + "account    TEXT        UNIQUE        NOT NULL,\n"
                     + "amount     INTEGER,\n"
                     + "balance    INTEGER\n"
                     + ");";
