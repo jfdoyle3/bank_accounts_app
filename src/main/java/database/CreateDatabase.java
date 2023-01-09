@@ -13,8 +13,6 @@ public class CreateDatabase {
             // Connect to SQLite and Create Database file
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:bank.db");
-           // System.out.println("---> Opened database successfully");
-
 
             stmt = conn.createStatement();
 
@@ -22,7 +20,7 @@ public class CreateDatabase {
             // Savings
             String savingsTable = "CREATE TABLE IF NOT EXISTS savings(\n"
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
-                    + "account    TEXT        UNIQUE        NOT NULL,\n"
+                    + "account    TEXT                      NOT NULL,\n"
                     + "amount     INTEGER,\n"
                     + "balance    INTEGER\n"
                     + ")";
@@ -30,17 +28,17 @@ public class CreateDatabase {
             //Checking
             String checkingTable = "CREATE TABLE IF NOT EXISTS checking (\n"
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
-                    + "account    TEXT        UNIQUE        NOT NULL,\n"
+                    + "account    TEXT                      NOT NULL,\n"
                     + "amount     INTEGER,\n"
                     + "balance    INTEGER\n"
                     + ");";
 
-            // Account
+            // Accounts
             String accountsTable = "CREATE TABLE IF NOT EXISTS accounts (\n"
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
                     + "name TEXT NOT NULL,\n"
-                    + "savings TEXT,\n"
-                    + "checking TEXT\n"
+                    + "savings TEXT     UNIQUE,\n"
+                    + "checking TEXT    UNIQUE\n"
                     + ");";
 
             stmt.executeUpdate(savingsTable);
