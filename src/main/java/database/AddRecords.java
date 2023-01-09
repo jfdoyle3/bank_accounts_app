@@ -17,8 +17,8 @@ public class AddRecords {
 
 
             stmt = conn.createStatement();
-            String insertRecord="INSERT INTO accounts (NAME,CHECKING) " +
-                    "VALUES ('"+name+"','"+check+"');";
+//            String insertRecord="INSERT INTO accounts (?,?) " +
+//                    "VALUES ('"+name+"','"+check+"');";
             stmt.executeUpdate(sqlStatement);
 
             stmt.close();
