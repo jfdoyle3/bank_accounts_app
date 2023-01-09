@@ -8,8 +8,8 @@ public class CheckingAccount extends Account{
         super();
     }
 
-    public CheckingAccount(int accountNumber,double fee) {
-        super(accountNumber);
+    public CheckingAccount(String name, String  accountNumber,double fee) {
+        super(name,accountNumber);
         FEE=fee;
     }
 

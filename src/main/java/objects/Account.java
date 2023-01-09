@@ -2,21 +2,27 @@ package objects;
 
 public abstract class Account {
 
-    private int accountNumber;
+    private String name;
+
+    private String accountNumber;
     protected double balance;
 
     public Account() {
     }
 
-    public Account(int accountNumber) {
+    public Account(String name, String accountNumber) {
+        this.name=name;
         this.accountNumber = accountNumber;
         balance=0;
     }
 
-    public int getAccountNumber() {
-        return accountNumber;
+    public String getName() {
+        return name;
     }
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
     public double getBalance() {
         return balance;
     }

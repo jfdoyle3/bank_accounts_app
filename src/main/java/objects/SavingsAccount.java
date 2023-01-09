@@ -10,8 +10,8 @@ public class SavingsAccount extends Account{
         super();
     }
 
-    public SavingsAccount(int accountNumber,double interestRate) {
-        super(accountNumber);
+    public SavingsAccount(String name, String accountNumber,double interestRate) {
+        super(name, accountNumber);
         this.interestRate=interestRate;
     }
 

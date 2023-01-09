@@ -1,0 +1,3 @@
+UPDATE accounts
+SET CHECKING=NULL
+WHERE name='Tracy';
