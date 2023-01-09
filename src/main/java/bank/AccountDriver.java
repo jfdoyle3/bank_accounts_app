@@ -134,7 +134,7 @@ public class AccountDriver {
         String name=keyboard.next();
         String accountNumber;
         accountNumber=Integer.toString(accountGenerator());
-        System.out.println(accountNumber);
+ //       System.out.println(accountNumber);
 //        System.out.print("Enter Account Number: ");
 //        accountNumber = keyboard.nextInt();
 
@@ -143,9 +143,18 @@ public class AccountDriver {
             System.out.print("Enter transaction Fee: ");
             double fee = keyboard.nextDouble();
             account = new CheckingAccount(name, accountNumber, fee);
-            System.out.println("--------------->  "+account.getName()+" || "+account.getAccountNumber());
+            // System.out.println("--------------->  "+account.getName()+" || "+account.getAccountNumber());
+
             String createCheckingAccount="INSERT INTO accounts (NAME,CHECKING) VALUES('"+account.getName()+"','"+ account.getAccountNumber()+"');";
             AddRecords.addRecord(createCheckingAccount);
+
+            /*
+                Use Add Record Method to execute this query
+                SQL for updating records / add new account to existing record:
+                UPDATE accounts
+                SET CHECKING=NULL
+                WHERE name='Tracy';
+             */
         } else {
             System.out.print("Enter the interest rate: ");
             double ir = keyboard.nextDouble();
