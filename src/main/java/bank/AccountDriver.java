@@ -144,9 +144,12 @@ public class AccountDriver {
             double fee = keyboard.nextDouble();
             account = new CheckingAccount(name, accountNumber, fee);
             // System.out.println("--------------->  "+account.getName()+" || "+account.getAccountNumber());
+            String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
+          //  boolean recordExist=ReadRecords.readRecords(findByNameQuery);
+            //String createCheckingAccount="INSERT INTO accounts (NAME,CHECKING) VALUES('"+account.getName()+"','"+ account.getAccountNumber()+"');";
+            //AddRecords.addRecord(createCheckingAccount);
 
-            String createCheckingAccount="INSERT INTO accounts (NAME,CHECKING) VALUES('"+account.getName()+"','"+ account.getAccountNumber()+"');";
-            AddRecords.addRecord(createCheckingAccount);
+
 
             /*
                 Use Add Record Method to execute this query

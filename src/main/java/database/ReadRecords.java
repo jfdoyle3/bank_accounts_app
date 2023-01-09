@@ -1,16 +1,13 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ReadRecords {
 
     public static void readRecords(String sqlQuery) {
         Connection conn = null;
         Statement stmt = null;
-        String name="Jim";
+
 
         try {
             Class.forName("org.sqlite.JDBC");
@@ -22,18 +19,28 @@ public class ReadRecords {
 
             //String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
             ResultSet rs=stmt.executeQuery(sqlQuery);
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") +  "\t" +
-                        rs.getString("name") + "\t" +
-                        rs.getString("savings")+"\t"+
-                        rs.getString("checking"));
-            }
+            accountsDisplay(rs);
+//            while (rs.next()) {
+//                System.out.println(rs.getInt("id") +  "\t" +
+//                        rs.getString("name") + "\t" +
+//                        rs.getString("savings")+"\t"+
+//                        rs.getString("checking"));
+//            }
             stmt.close();
             conn.commit();
             conn.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        }
+    }
+
+    public static void accountsDisplay(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            System.out.println(rs.getInt("id") +  "\t" +
+                    rs.getString("name") + "\t" +
+                    rs.getString("savings")+"\t"+
+                    rs.getString("checking"));
         }
     }
 }
