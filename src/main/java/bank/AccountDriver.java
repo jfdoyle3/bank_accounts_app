@@ -17,6 +17,8 @@ public class AccountDriver {
         // Create Tables
         CreateDatabase.createDatabase();
 
+
+
         // Scanner
         Scanner keyboard = new Scanner(System.in);
 
@@ -24,7 +26,6 @@ public class AccountDriver {
         // Account accounts[] = new Account[10];
         // int numAccounts = 0;
         int choice = 0;
-
 
 
         // Menu input results loop.
@@ -48,15 +49,20 @@ public class AccountDriver {
 //                    applyInterest(accounts, numAccounts, keyboard);
 //                    break;
 //                }
+                case 5, 23646: {
+       //             displayAccount();
+                    break;
+                }
 
                 case 22: {
                     searchAccountSQL(keyboard);
                     break;
-                }
+                }//                    adminMenu();
                 case 99: {
                     System.out.println("Good-Bye");
                     break;
                 }
+
                 default: {
                     System.out.println("Invalid Selection");
                     break;
@@ -78,10 +84,11 @@ public class AccountDriver {
 //    }
 
     public static int searchAccountSQL(Scanner keyboard) {
-        System.out.println("Enter account number");
-        int accountNumber = keyboard.nextInt();
-        String accountNumberStr=Integer.toString(accountNumber);
-        String findByNameQuery= "SELECT * FROM accounts WHERE checking='"+accountNumberStr+"'";
+        System.out.println("Enter account name: ");
+        String name=keyboard.next();
+       // int accountNumber = keyboard.nextInt();
+    //    String accountNumberStr = Integer.toString(accountNumber);
+        String findByNameQuery = "SELECT * FROM accounts WHERE name='" + name + "'";
         ReadRecords.readRecords(findByNameQuery);
         return -1;
     }
@@ -128,28 +135,27 @@ public class AccountDriver {
 //    }
 
     public static Account createAccount(Scanner keyboard) {
-        Account account = null;
-        int choice = Console.accountMenu(keyboard);
+        Random randNumber = new Random(System.currentTimeMillis());
+        Account account=null;
         System.out.printf("Enter Name: ");
-        String name=keyboard.next();
-        String accountNumber;
-        accountNumber=Integer.toString(accountGenerator());
- //       System.out.println(accountNumber);
-//        System.out.print("Enter Account Number: ");
-//        accountNumber = keyboard.nextInt();
-        checkingAccount = new CheckingAccount(name, accountNumber, fee);
-        savinsAccount = new CheckingAccount(name, accountNumber, fee);
-        System.out.println();
-        if (choice == 1) {
-            System.out.print("Enter transaction Fee: ");
-            double fee = keyboard.nextDouble();
+        String name = keyboard.next();
+        int accountNumberChecking=Math.abs((1 + randNumber.nextInt(2)) * (int)Math.pow(10,9) + randNumber.nextInt((int)Math.pow(10,9)));
+        int accountNumberSavings=Math.abs(accountNumberChecking+((1 + randNumber.nextInt(2)) * (int)Math.pow(10,5) + randNumber.nextInt((int)Math.pow(10,5))));
+        int fee=1;
+        int ir=1;
 
-            // System.out.println("--------------->  "+account.getName()+" || "+account.getAccountNumber());
-            String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
-          //  boolean recordExist=ReadRecords.readRecords(findByNameQuery);
-            String createCheckingAccount="INSERT INTO accounts (NAME,CHECKING) VALUES('"+account.getName()+"','"+ account.getAccountNumber()+"');";
-            AddRecords.addRecord(createCheckingAccount);
+        Account checkingAccount = new CheckingAccount(name, Integer.toString(accountNumberChecking), fee);
+        Account savingsAccount = new SavingsAccount(name, Integer.toString(accountNumberSavings), ir);
 
+        String createAccount = "INSERT INTO accounts (NAME,SAVINGS,CHECKING) " +
+                                        "VALUES('" + checkingAccount.getName() + "','" +
+                                                     savingsAccount.getAccountNumber() + "','"+
+                                                     checkingAccount.getAccountNumber()+"');";
+
+        AddRecords.addRecord(createAccount);
+
+        System.out.println("Your Account Numbers:\nSavings: "+savingsAccount.getAccountNumber());
+        System.out.println("Checking: "+checkingAccount.getAccountNumber());
 
 
             /*
@@ -165,11 +171,13 @@ public class AccountDriver {
 //            account = new SavingsAccount(name, accountNumber, ir);
 //        }
 
-        return account;
+        return null;
+        }
+
+
+//        public static int accountGenerator () {
+//            Random randNumber = new Random(System.currentTimeMillis());
+//            return ((1 + randNumber.nextInt(2)) * (int)Math.pow(10,9) + randNumber.nextInt((int)Math.pow(10,9)));
+//        }
     }
 
-    public static int accountGenerator() {
-        Random r = new Random( System.currentTimeMillis() );
-        return ((1 + r.nextInt(2)) * 100000000 + r.nextInt(100000000));
-    }
-}
