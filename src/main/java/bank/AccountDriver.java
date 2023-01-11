@@ -130,19 +130,20 @@ public class AccountDriver {
     public static Account createAccount(Scanner keyboard) {
         Account account = null;
         int choice = Console.accountMenu(keyboard);
-        System.out.printf("Enter Name");
+        System.out.printf("Enter Name: ");
         String name=keyboard.next();
         String accountNumber;
         accountNumber=Integer.toString(accountGenerator());
  //       System.out.println(accountNumber);
 //        System.out.print("Enter Account Number: ");
 //        accountNumber = keyboard.nextInt();
-
+        checkingAccount = new CheckingAccount(name, accountNumber, fee);
+        savinsAccount = new CheckingAccount(name, accountNumber, fee);
         System.out.println();
         if (choice == 1) {
             System.out.print("Enter transaction Fee: ");
             double fee = keyboard.nextDouble();
-            account = new CheckingAccount(name, accountNumber, fee);
+
             // System.out.println("--------------->  "+account.getName()+" || "+account.getAccountNumber());
             String findByNameQuery= "SELECT * FROM accounts WHERE name='"+name+"'";
           //  boolean recordExist=ReadRecords.readRecords(findByNameQuery);
@@ -158,11 +159,11 @@ public class AccountDriver {
                 SET CHECKING=NULL
                 WHERE name='Tracy';
              */
-        } else {
-            System.out.print("Enter the interest rate: ");
-            double ir = keyboard.nextDouble();
-            account = new SavingsAccount(name, accountNumber, ir);
-        }
+//        } else {
+//            System.out.print("Enter the interest rate: ");
+//            double ir = keyboard.nextDouble();
+//            account = new SavingsAccount(name, accountNumber, ir);
+//        }
 
         return account;
     }
