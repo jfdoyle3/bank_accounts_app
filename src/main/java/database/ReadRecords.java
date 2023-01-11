@@ -36,8 +36,10 @@ public class ReadRecords {
     }
 
     public static void accountsDisplay(ResultSet rs) throws SQLException {
+        System.out.println("Name\tSavings\t\tChecking\n" +
+                "-".repeat(36));
         while (rs.next()) {
-            System.out.println(rs.getInt("id") +  "\t" +
+            System.out.println(
                     rs.getString("name") + "\t" +
                     rs.getString("savings")+"\t"+
                     rs.getString("checking"));

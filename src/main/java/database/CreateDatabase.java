@@ -36,7 +36,7 @@ public class CreateDatabase {
             // Accounts
             String accountsTable = "CREATE TABLE IF NOT EXISTS accounts (\n"
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
-                    + "name TEXT NOT NULL,\n"
+                    + "name TEXT        UNIQUE              NOT NULL,\n"
                     + "savings TEXT     UNIQUE,\n"
                     + "checking TEXT    UNIQUE\n"
                     + ");";
