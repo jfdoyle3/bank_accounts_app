@@ -157,8 +157,9 @@ public class AccountDriver {
 
         AddRecords.addRecord(createAccount);
 
-        System.out.println("Your Account Numbers:\nSavings: "+savingsAccount.getAccountNumber());
-        System.out.println("Checking: "+checkingAccount.getAccountNumber());
+        System.out.println("Your Account Numbers:\nSavings: "+savingsAccount.getAccountNumber()+
+                            "\nChecking: "+checkingAccount.getAccountNumber());
+       
 
 
         return null;
