@@ -7,6 +7,7 @@ import objects.Account;
 import objects.CheckingAccount;
 import objects.SavingsAccount;
 
+import java.sql.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ public class AccountDriver {
             System.out.println();
             switch (choice) {
                 case 1: {
-                    createAccount(keyboard);
+                    Accounts.createAccount(keyboard);
                     break;
                 }
 //                case 2: {
@@ -97,18 +98,26 @@ public class AccountDriver {
     }
 
 
+
     // Bank Functions
+
+    /* Steps on making a deposit
+            1. Get Account number
+            2. amount deposited
+            3. add to account balance.
+     */
     public static void doDeposit(Account accounts, int count, Scanner keyboard) {
         System.out.print("\nPlease enter account number: ");
         int accountNumber = keyboard.nextInt();
-        int index = searchAccount(accounts, count, accountNumber);
-        if (index >= 0) {
-            System.out.print("Please enter Deposit Amount: ");
-            double amount = keyboard.nextDouble();
-            accounts[index].deposit(amount);
-        } else {
-            System.out.println("No account exist with AccountNumber " + accountNumber);
-        }
+        // SQL Search on Account Number
+        // int index = searchAccount(accounts, count, accountNumber);
+//        if (index >= 0) {
+//            System.out.print("Please enter Deposit Amount: ");
+//            double amount = keyboard.nextDouble();
+//            accounts[index].deposit(amount);
+//        } else {
+//            System.out.println("No account exist with AccountNumber " + accountNumber);
+//        }
     }
 
 //    public static void doWithdraw(Account accounts[], int count, Scanner keyboard) {
@@ -138,31 +147,8 @@ public class AccountDriver {
 //    }
 
     // Create Account
-    public static Account createAccount(Scanner keyboard) {
-        Random randNumber = new Random(System.currentTimeMillis());
-        Account account=null;
-        System.out.printf("Enter Name: ");
-        String name = keyboard.next();
-        int accountNumberChecking=Math.abs((1 + randNumber.nextInt(2)) * (int)Math.pow(10,9) + randNumber.nextInt((int)Math.pow(10,9)));
-        int accountNumberSavings=Math.abs(accountNumberChecking+((1 + randNumber.nextInt(2)) * (int)Math.pow(10,5) + randNumber.nextInt((int)Math.pow(10,5))));
 
 
-        Account checkingAccount = new CheckingAccount(name, Integer.toString(accountNumberChecking), fee);
-        Account savingsAccount = new SavingsAccount(name, Integer.toString(accountNumberSavings), ir);
-
-        String createAccount = "INSERT INTO accounts (NAME,SAVINGS,CHECKING) " +
-                                        "VALUES('" + checkingAccount.getName() + "','" +
-                                                     savingsAccount.getAccountNumber() + "','"+
-                                                     checkingAccount.getAccountNumber()+"');";
-
-        AddRecords.addRecord(createAccount);
-
-        System.out.println("Your Account Numbers:\nSavings: "+savingsAccount.getAccountNumber()+
-                            "\nChecking: "+checkingAccount.getAccountNumber());
-       
-
-
-        return null;
-        }
+        //java.sql.Timestamp sqlTS = new java.sql.Timestamp(date.getTime());
     }
 
