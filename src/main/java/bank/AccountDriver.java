@@ -88,11 +88,11 @@ public class AccountDriver {
 //    }
 
     public static int searchAccountSQL(Scanner keyboard) {
-        System.out.println("Enter account name: ");
-        String name=keyboard.next();
+        System.out.println("Enter account number: ");
+        String account=keyboard.next();
        // int accountNumber = keyboard.nextInt();
     //    String accountNumberStr = Integer.toString(accountNumber);
-        String findByNameQuery = "SELECT * FROM accounts WHERE name='" + name + "'";
+        String findByNameQuery = "SELECT * FROM checking WHERE account='" + account + "'";
         ReadRecords.readRecords(findByNameQuery);
         return -1;
     }
@@ -107,10 +107,10 @@ public class AccountDriver {
             3. add to account balance.
      */
     public static void doDeposit(Account accounts, int count, Scanner keyboard) {
-        System.out.print("\nPlease enter account number: ");
+        System.out.print("\nPlease enter checking account number: ");
         int accountNumber = keyboard.nextInt();
         // SQL Search on Account Number
-        // int index = searchAccount(accounts, count, accountNumber);
+        // int index = searchAccountSQL(accounts, count, accountNumber);
 //        if (index >= 0) {
 //            System.out.print("Please enter Deposit Amount: ");
 //            double amount = keyboard.nextDouble();
