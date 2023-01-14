@@ -23,6 +23,7 @@ public class CreateDatabase {
                     + "account    TEXT                      NOT NULL,\n"
                     + "date TIMESTAMP   DEFAULT CURRENT_TIMESTAMP   NOT NULL,\n"
                     + "amount     INTEGER,\n"
+                    + "interest INTEGER,\n"
                     + "balance    INTEGER\n"
                     + ")";
 
@@ -32,6 +33,7 @@ public class CreateDatabase {
                     + "account    TEXT                      NOT NULL,\n"
                     + "date TIMESTAMP   DEFAULT CURRENT_TIMESTAMP   NOT NULL,\n"
                     + "amount INTEGER,\n"
+                    + "fee  INTEGER,\n"
                     + "balance    INTEGER\n"
                     + ");";
 
@@ -53,6 +55,6 @@ public class CreateDatabase {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Database created successfully");
+       // System.out.println("Database created successfully");
     }
 }

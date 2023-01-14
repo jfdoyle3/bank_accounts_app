@@ -2,6 +2,7 @@ package bank;
 
 import database.AddRecords;
 import objects.Account;
+import objects.BankTransactions;
 import objects.CheckingAccount;
 import objects.SavingsAccount;
 
@@ -16,6 +17,7 @@ public class Accounts {
     private Date date=new Date(millis);
     private  Account account=null;
 
+    private static BankTransactions bank = new BankTransactions();
     public static Account createAccount(Scanner keyboard) {
 
 
@@ -25,8 +27,8 @@ public class Accounts {
         int accountNumberSavings=Math.abs(accountNumberChecking+((1 + randNumber.nextInt(2)) * (int)Math.pow(10,5) + randNumber.nextInt((int)Math.pow(10,5))));
 
 
-        Account checkingAccount = new CheckingAccount(name, Integer.toString(accountNumberChecking), fee);
-        Account savingsAccount = new SavingsAccount(name, Integer.toString(accountNumberSavings), ir);
+        Account checkingAccount = new CheckingAccount(name, Integer.toString(accountNumberChecking), bank.getCheckingFee());
+        Account savingsAccount = new SavingsAccount(name, Integer.toString(accountNumberSavings), bank.getInterestRate());
 
         String createAccount = "INSERT INTO accounts (NAME,SAVINGS,CHECKING) " +
                 "VALUES('" + checkingAccount.getName() + "','" +
@@ -43,14 +45,14 @@ public class Accounts {
     }
 
     public static void createSavingsAccountTransactions(SavingsAccount savingsAccount) {
-        String generateSavingsBalanceTable = "INSERT INTO savings (ACCOUNT,AMOUNT,BALANCE) " +
-                "VALUES ('" + savingsAccount.getAccountNumber() + "',0,0);";
+        String generateSavingsBalanceTable = "INSERT INTO savings (ACCOUNT,AMOUNT,INTEREST,BALANCE) " +
+                "VALUES ('" + savingsAccount.getAccountNumber() + bank.getInterestRate()+"',0,0);";
         AddRecords.addRecord(generateSavingsBalanceTable);
     }
 
     public static void createCheckingAccountTransactions(CheckingAccount checkingAccount) {
         String generateCheckingBalanceTable = "INSERT INTO checking (ACCOUNT,AMOUNT,BALANCE) " +
-                "VALUES ('" + checkingAccount.getAccountNumber() + "',0,0);";
+                "VALUES ('" + checkingAccount.getAccountNumber() + bank.getCheckingFee()+"',0,0);";
         AddRecords.addRecord(generateCheckingBalanceTable);
     }
 }
