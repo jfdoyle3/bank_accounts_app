@@ -36,7 +36,8 @@ public class Accounts {
                 checkingAccount.getAccountNumber()+"');";
 
         AddRecords.addRecord(createAccount);
-
+        createSavingsAccountTransactions(savingsAccount, bank);
+        createCheckingAccountTransactions(checkingAccount, bank);
 
         System.out.println("Your Account Numbers:\nSavings: "+savingsAccount.getAccountNumber()+
                 "\nChecking: "+checkingAccount.getAccountNumber());
@@ -44,15 +45,15 @@ public class Accounts {
         return null;
     }
 
-    public static void createSavingsAccountTransactions(SavingsAccount savingsAccount) {
+    public static void createSavingsAccountTransactions(Account savingsAccount, BankTransactions bank) {
         String generateSavingsBalanceTable = "INSERT INTO savings (ACCOUNT,AMOUNT,INTEREST,BALANCE) " +
-                "VALUES ('" + savingsAccount.getAccountNumber() + bank.getInterestRate()+"',0,0);";
+                "VALUES ('" + savingsAccount.getAccountNumber()+"',0," + bank.getInterestRate()+",0);";
         AddRecords.addRecord(generateSavingsBalanceTable);
     }
 
-    public static void createCheckingAccountTransactions(CheckingAccount checkingAccount) {
-        String generateCheckingBalanceTable = "INSERT INTO checking (ACCOUNT,AMOUNT,BALANCE) " +
-                "VALUES ('" + checkingAccount.getAccountNumber() + bank.getCheckingFee()+"',0,0);";
+    public static void createCheckingAccountTransactions(Account checkingAccount, BankTransactions bank) {
+        String generateCheckingBalanceTable = "INSERT INTO checking (ACCOUNT,AMOUNT, FEE,BALANCE) " +
+                "VALUES ('" + checkingAccount.getAccountNumber() +"',0,"+ bank.getCheckingFee()+",0);";
         AddRecords.addRecord(generateCheckingBalanceTable);
     }
 }
