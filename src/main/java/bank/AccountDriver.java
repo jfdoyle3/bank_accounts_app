@@ -110,10 +110,10 @@ public class AccountDriver {
         System.out.print("\nPlease enter checking account number: ");
         int accountNumber = keyboard.nextInt();
         // SQL Search on Account Number
-        // int index = searchAccountSQL(accounts, count, accountNumber);
+         int index = searchAccountSQL(accounts, count, accountNumber);
 //        if (index >= 0) {
-//            System.out.print("Please enter Deposit Amount: ");
-//            double amount = keyboard.nextDouble();
+          System.out.print("Please enter Deposit Amount: ");
+            double amount = keyboard.nextDouble();
 //            accounts[index].deposit(amount);
 //        } else {
 //            System.out.println("No account exist with AccountNumber " + accountNumber);
